@@ -12,7 +12,6 @@ param store for react
 ```
 import ParamStore from 'param-store'
 import {connect} from 'param-store'
-param store for react
 
 ParamStore.set({pathname: 'login'})
 ParamStore.get() // get whole params object

@@ -1,6 +1,6 @@
 {
   "name": "param-store",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "param store for react",
   "main": "dist/param-store.js",
   "scripts": {

@@ -81,7 +81,7 @@ history.listen(function() {
     // get the names of the changed params
     const allParamNames = _.union(_.keys(previousParams), _.keys(currentParams));
     const changedParams = allParamNames.filter(function(paramName) {
-      return previousParams[paramName] === currentParams[paramName];
+      return !_.isEqual(previousParams[paramName], currentParams[paramName]);
     });
     // check if the changed ones contains the listened ones
     const shouldNotify = _.difference(names, changedParams).length < names.length;

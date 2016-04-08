@@ -2,7 +2,7 @@
   "name": "param-store",
   "version": "0.3.0",
   "description": "param store for react",
-  "main": "dist/param-store.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo 'NO CI TEST'",
     "lint": "gulp lint",

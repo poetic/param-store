@@ -11,16 +11,16 @@ param store for react
 import ParamStore from 'param-store'
 import {connect} from 'param-store'
 
-ParamStore.set({pathname: 'login'})
+ParamStore.set({path: 'login'})
 ParamStore.get() // get whole params object
-ParamStore.get('pathname', 'tab') // return  {pathname: 'pathname', tab: 'tab'}
+ParamStore.get('path', 'tab') // return  {path: 'path', tab: 'tab'}
 
-const listener = ParamStore.listen('pathname', 'tab', function(report){
+const listener = ParamStore.listen('path', 'tab', function(report){
   const {changedParams, currentParams, previousParams} = report
 })
 ParamStore.unlisten(listener)
 
-connect(Login, 'pathname', 'tab’) // pathname and tab will be passed as props
+connect(Login, 'path', 'tab’) // path and tab will be passed as props
 ```
 
 ## DEVELOPMENT

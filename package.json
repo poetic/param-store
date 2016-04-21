@@ -8,7 +8,7 @@
     "lint": "gulp lint",
     "browser": "gulp test-browser & python -m SimpleHTTPServer & open http://localhost:8000/test/runner.html",
     "coverage": "gulp coverage",
-    "compile": "babel -d lib/ src/"
+    "build": "babel -d lib/ src/"
   },
   "repository": {
     "type": "git",

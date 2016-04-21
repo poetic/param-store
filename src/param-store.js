@@ -65,10 +65,11 @@ const ParamStore = {
       }
     })
 
-    return {
-      pathname: nextParams.path ? ('/' + nextParams.path) : url.path,
-      search: '?' + url.query.toString()
-    }
+    const pathname = nextParams.path ? ('/' + nextParams.path) : url.path
+    const queryString = url.query.toString()
+    const search = (queryString ? '?' : '') + queryString
+
+    return {pathname, search}
   }
 }
 

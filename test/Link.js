@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link} from '../../src/index';
-import ParamStore from '../../src/index';
+import ParamStore, {Link} from '../src/index';
+
+const expect = chai.expect;
 
 describe('Link', () => {
   beforeEach(() => {
-    ParamStore.set({path: 'test/runner.html'});
+    ParamStore.reset();
   });
 
   afterEach(() => {
     ReactDOM.unmountComponentAtNode(document.getElementById('test'));
-    ParamStore.set({path: 'test/runner.html'});
+    ParamStore.reset();
   });
 
   it('should change the url when clicked', function () {

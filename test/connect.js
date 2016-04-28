@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {connect} from '../../src/index';
-import ParamStore from '../../src/index';
+import ParamStore, {connect} from '../src/index';
 
-describe('connect', () => {
-  beforeEach(() => {
-    ParamStore.set({path: 'test/runner.html', paramA: null, paramB: null});
+const expect = chai.expect;
+
+describe('connect', function () {
+  beforeEach(function () {
+    ParamStore.reset();
   });
 
-  afterEach(() => {
+  afterEach(function () {
     ReactDOM.unmountComponentAtNode(document.getElementById('test'));
-    ParamStore.set({path: 'test/runner.html', paramA: null, paramB: null});
+    ParamStore.reset();
   });
 
-  it('should listen to the change of url params', () => {
+  it('should listen to the change of url params', function () {
     let paramA;
 
     const ComponentA = React.createClass({
@@ -35,7 +36,7 @@ describe('connect', () => {
     expect(paramA).to.eql('valueA');
   });
 
-  it('should pass through all the props', () => {
+  it('should pass through all the props', function () {
     let propA;
 
     const ComponentA = React.createClass({

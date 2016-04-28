@@ -1,26 +1,26 @@
-import ParamStore from '../../src/index';
+import ParamStore from '../src/index';
 import Url from 'domurl';
 
 describe('ParamStore', () => {
   beforeEach(() => {
-    ParamStore.set({path: 'test/runner.html', paramA: null, paramB: null});
+    ParamStore.reset();
   });
 
   afterEach(() => {
-    ParamStore.set({path: 'test/runner.html', paramA: null, paramB: null});
+    ParamStore.reset();
   });
 
   describe('get', () => {
     it('should get all params in url', () => {
-      window.history.pushState({}, 'runner', '/test/runner.html?paramA=valueA');
+      window.history.pushState({}, 'runner', '/?paramA=valueA');
       expect(ParamStore.get()).to.eql({
-        path: 'test/runner.html',
+        path: '',
         paramA: 'valueA'
       });
     });
 
     it('should get part of params which user specified', () => {
-      window.history.pushState({}, 'runner', '/test/runner.html?paramA=valueA');
+      window.history.pushState({}, 'runner', '/?paramA=valueA');
       expect(ParamStore.get('paramA')).to.eql({
         paramA: 'valueA'
       });
@@ -36,7 +36,7 @@ describe('ParamStore', () => {
     it('should set params', () => {
       ParamStore.set({paramA: 'valueA'});
       expect(ParamStore.get('paramA').paramA).to.eql('valueA');
-      expect(ParamStore.get('path').path).to.eql('test/runner.html');
+      expect(ParamStore.get('path').path).to.eql('');
     });
   });
 
@@ -62,10 +62,21 @@ describe('ParamStore', () => {
     it('should not notify handler when the param did not change', (done) => {
       const handler = ParamStore.listen('paramA', function(report) {
         throw new Error('this should not be called');
-        done();
       });
       ParamStore.set({paramB: 'valueB'});
-      setTimeout(function() { done(); }, 50);
+      setTimeout(function() {
+        done();
+        ParamStore.unlisten(handler);
+      }, 50);
     });
   });
+
+  describe('reset', () => {
+    it('should remove all params', () => {
+      ParamStore.set({path: 'new-path', paramB: 'valueB'});
+      expect(ParamStore.get('paramB').paramB).to.eql('valueB');
+      ParamStore.reset();
+      expect(ParamStore.get('paramB').paramB).to.be.undefined;
+    });
+  })
 });

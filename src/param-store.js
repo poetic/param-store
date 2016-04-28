@@ -31,6 +31,11 @@ const ParamStore = {
     }
   },
 
+  reset(params) {
+    const currentParamsWithNull = _.mapValues(this._getParams(), () => null)
+    this.set(_.extend(currentParamsWithNull, params))
+  },
+
   listen() {
     const args = Array.prototype.slice.call(arguments)
     const callback = args.pop()
@@ -65,7 +70,15 @@ const ParamStore = {
       }
     })
 
-    const pathname = nextParams.path ? ('/' + nextParams.path) : url.path
+    let pathname;
+    if (_.isUndefined(nextParams.path)) {
+      pathname = url.path
+    } else if (_.isNull(nextParams.path)) {
+      pathname = ''
+    } else {
+      pathname = '/' + nextParams.path
+    }
+
     const queryString = url.query.toString()
     const search = (queryString ? '?' : '') + queryString
 

@@ -1,16 +1,9 @@
+// this is only used for testing
 var path = require('path');
 
 module.exports = {
-  // TODO:
-  // after webpack 2,
-  // change
-  // src: ["./src/index"],
-  // to
-  // src: "./src/index",
-  //https://github.com/webpack/webpack/issues/300
-  entry: {
-    src: ["./src/index"],
-    test: "./test/index"
+  entry:  {
+    test: ["./src/index", "./test/index"]
   },
   output: {
     path: path.join(__dirname, "/dist"),

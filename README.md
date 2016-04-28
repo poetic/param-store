@@ -3,6 +3,7 @@ param-store manage the url. What's special about it is it treats url as
 independent params which can be set and get.
 
 [![Travis build status](http://img.shields.io/travis/poetic/param-store.svg?style=flat)](https://travis-ci.org/poetic/param-store)
+[![npm](https://img.shields.io/npm/v/param-store.svg)](https://npmjs.org/package/param-store)
 [![Dependency Status](https://david-dm.org/poetic/param-store.svg)](https://david-dm.org/poetic/param-store)
 [![devDependency Status](https://david-dm.org/poetic/param-store/dev-status.svg)](https://david-dm.org/poetic/param-store#info=devDependencies)
 

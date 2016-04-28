@@ -28,6 +28,6 @@ describe('Link', () => {
 
     document.getElementById('new-path').click()
 
-    expect(ParamStore.get('path').path).to.eql('new-path')
+    expect(ParamStore.get('path')).to.eql('new-path')
   });
 });

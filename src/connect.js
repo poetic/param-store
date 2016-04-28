@@ -5,8 +5,8 @@ function connect(Component, ...paramNames) {
   const WrappedComponent = React.createClass({
     getInitialState: function() {
       return {
-        changedParams: ParamStore.get(...paramNames),
-        currentParams: ParamStore.get(),
+        changedParams: ParamStore.pick(...paramNames),
+        currentParams: ParamStore.getAll(),
         previousParams: {}
       }
     },

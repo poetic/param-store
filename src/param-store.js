@@ -7,14 +7,16 @@ const history = createHistory()
 const ParamStore = {
   previousParams: {},
 
-  get(...names) {
-    const params = this._getParams()
+  get(name) {
+    return this._getParams()[name]
+  },
 
-    if (names.length === 0) {
-      return params
-    } else {
-      return _.pick(params, names)
-    }
+  getAll(name) {
+    return this._getParams()
+  },
+
+  pick(names) {
+    return _.pick(this._getParams(), names)
   },
 
   set(params) {

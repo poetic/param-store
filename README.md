@@ -1,6 +1,6 @@
 # param-store
 param-store manage the url. What's special about it is it treats url as
-independent params which is can set and get.
+independent params which can be set and get.
 
 [![Travis build status](http://img.shields.io/travis/poetic/param-store.svg?style=flat)](https://travis-ci.org/poetic/param-store)
 [![Dependency Status](https://david-dm.org/poetic/param-store.svg)](https://david-dm.org/poetic/param-store)
@@ -14,10 +14,17 @@ import ParamStore from 'param-store'
 // path is a special param in the sense that it is the path in the url
 // instead of in the query part.
 // Otherwise it is the same as other query params.
-ParamStore.set({path: 'login'})
-ParamStore.get() // get whole params object
-ParamStore.get('path', 'tab') // return  {path: 'path', tab: 'tab'}
 
+// SETTER
+ParamStore.set({path: 'login'}) // change current params
+Paramstore.reset({path: 'login'}) // overwrite current params
+
+// GETTER
+ParamStore.get('path') // get whole params object
+ParamStore.getAll() // get whole params object
+ParamStore.pick(['path', 'tab']) // return  {path: 'path', tab: 'tab'}
+
+// LISTENNER
 const listener = ParamStore.listen('path', 'tab', function(report){
   const {changedParams, currentParams, previousParams} = report
 })

@@ -1,46 +1,62 @@
 import ParamStore from '../src/index';
 import Url from 'domurl';
 
-describe('ParamStore', () => {
-  beforeEach(() => {
+describe('ParamStore', function () {
+  beforeEach(function () {
     ParamStore.reset();
   });
 
-  afterEach(() => {
+  afterEach(function () {
     ParamStore.reset();
   });
 
-  describe('get', () => {
-    it('should get all params in url', () => {
+  describe('get', function () {
+    it('should get part of params which user specified', function () {
       window.history.pushState({}, 'runner', '/?paramA=valueA');
-      expect(ParamStore.get()).to.eql({
+      expect(ParamStore.get('paramA')).to.eql('valueA');
+    });
+  });
+
+  describe('getAll', function () {
+    it('should get all params in url', function () {
+      window.history.pushState({}, 'runner', '/?paramA=valueA');
+      expect(ParamStore.getAll()).to.eql({
         path: '',
         paramA: 'valueA'
       });
     });
+  });
 
-    it('should get part of params which user specified', () => {
+  describe('pick', function () {
+    it('should pick specific params', function () {
       window.history.pushState({}, 'runner', '/?paramA=valueA');
-      expect(ParamStore.get('paramA')).to.eql({
-        paramA: 'valueA'
-      });
+      expect(ParamStore.pick(['paramA'])).to.eql({ paramA: 'valueA' });
     });
   });
 
-  describe('set', () => {
-    it('should set path', () => {
+  describe('set', function () {
+    it('should set path', function () {
       ParamStore.set({path: 'new-path'});
-      expect(ParamStore.get('path').path).to.eql('new-path');
+      expect(ParamStore.get('path')).to.eql('new-path');
     });
 
-    it('should set params', () => {
+    it('should set params', function () {
       ParamStore.set({paramA: 'valueA'});
-      expect(ParamStore.get('paramA').paramA).to.eql('valueA');
-      expect(ParamStore.get('path').path).to.eql('');
+      expect(ParamStore.get('paramA')).to.eql('valueA');
+      expect(ParamStore.get('path')).to.eql('');
     });
   });
 
-  describe('listen', () => {
+  describe('reset', function () {
+    it('should remove all params', function () {
+      ParamStore.set({path: 'new-path', paramB: 'valueB'});
+      expect(ParamStore.get('paramB')).to.eql('valueB');
+      ParamStore.reset();
+      expect(ParamStore.get('paramB')).to.be.undefined;
+    });
+  })
+
+  describe('listen', function () {
     it('should notify handler', (done) => {
       const handler = ParamStore.listen('paramA', function(report) {
         expect(report.changedParams).to.eql({paramA: 'valueA'});
@@ -70,13 +86,4 @@ describe('ParamStore', () => {
       }, 50);
     });
   });
-
-  describe('reset', () => {
-    it('should remove all params', () => {
-      ParamStore.set({path: 'new-path', paramB: 'valueB'});
-      expect(ParamStore.get('paramB').paramB).to.eql('valueB');
-      ParamStore.reset();
-      expect(ParamStore.get('paramB').paramB).to.be.undefined;
-    });
-  })
 });

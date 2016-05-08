@@ -53,3 +53,6 @@ import {Link} from 'param-store'
   ```
   npm run browser
   ```
+
+- build:
+  NOTE: before buiding, remove node_modules/history

@@ -17,7 +17,11 @@ import ParamStore from 'param-store'
 // Otherwise it is the same as other query params.
 
 // SETTER
-ParamStore.set({path: 'login'}) // change current params
+// `set` MERGE the new params with the previous params in the url
+ParamStore.set({path: 'login'}) // change path
+Paramstore.set({userId: 'f38adfn'}) // change userId
+Paramstore.set({path: 'user', userId: 'f38adfn'}) // change path and userId
+// `reset` RESETS the whole url and ignore the previous url
 Paramstore.reset({path: 'login'}) // overwrite current params
 
 // GETTER

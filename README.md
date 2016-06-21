@@ -26,7 +26,7 @@ Paramstore.set({path: 'user', userId: 'f38adfn'}) // change path and userId
 Paramstore.setAll({path: 'login'}) // overwrite current params
 
 // GETTER
-ParamStore.get('path') // get whole params object
+ParamStore.get('path') // get 'path' from params
 ParamStore.getAll() // get whole params object
 
 // LISTENNER

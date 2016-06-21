@@ -46,7 +46,7 @@ connect(Login, 'path', 'tab’) // path and tab will be passed as props
 
 ### Link
 ```
-// Link use setAll under the hood
+// Link use `setAll` under the hood
 import {Link} from 'param-store'
 
 <Link type='button' params={{path: 'about'}}>this is an anchor tag</Link>

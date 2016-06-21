@@ -1,12 +1,12 @@
 {
   "name": "param-store",
-  "version": "0.4.8",
   "description": "param store for react",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "browser": "open http://localhost:8080/ && webpack-dev-server --hot --inline --content-base ./"
+    "test": "echo 'TEST IS NOT SETUP ON CI'",
+    "browser": "open http://localhost:8080/ && webpack-dev-server --hot --inline --content-base ./",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "jquery": "^2.2.3",
     "mocha": "^2.4.5",
     "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "semantic-release": "^4.3.5"
   }
 }

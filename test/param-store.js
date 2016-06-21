@@ -3,11 +3,11 @@ import Url from 'domurl';
 
 describe('ParamStore', function () {
   beforeEach(function () {
-    ParamStore.reset();
+    ParamStore.setAll();
   });
 
   afterEach(function () {
-    ParamStore.reset();
+    ParamStore.setAll();
   });
 
   describe('get', function () {
@@ -47,11 +47,11 @@ describe('ParamStore', function () {
     });
   });
 
-  describe('reset', function () {
+  describe('setAll', function () {
     it('should remove all params', function () {
       ParamStore.set({path: 'new-path', paramB: 'valueB'});
       expect(ParamStore.get('paramB')).to.eql('valueB');
-      ParamStore.reset();
+      ParamStore.setAll();
       expect(ParamStore.get('paramB')).to.be.undefined;
     });
   })

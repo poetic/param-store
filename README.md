@@ -22,13 +22,12 @@ import ParamStore from 'param-store'
 ParamStore.set({path: 'login'}) // change path
 Paramstore.set({userId: 'f38adfn'}) // change userId
 Paramstore.set({path: 'user', userId: 'f38adfn'}) // change path and userId
-// `reset` RESETS the whole url and ignore the previous url
-Paramstore.reset({path: 'login'}) // overwrite current params
+// `setAll` RESETS the whole url and ignore the previous url
+Paramstore.setAll({path: 'login'}) // overwrite current params
 
 // GETTER
 ParamStore.get('path') // get whole params object
 ParamStore.getAll() // get whole params object
-ParamStore.pick(['path', 'tab']) // return  {path: 'path', tab: 'tab'}
 
 // LISTENNER
 const listener = ParamStore.listen('path', 'tab', function(report){
@@ -47,6 +46,7 @@ connect(Login, 'path', 'tab’) // path and tab will be passed as props
 
 ### Link
 ```
+// Link use setAll under the hood
 import {Link} from 'param-store'
 
 <Link type='button' params={{path: 'about'}}>this is an anchor tag</Link>

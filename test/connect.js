@@ -6,12 +6,12 @@ const expect = chai.expect;
 
 describe('connect', function () {
   beforeEach(function () {
-    ParamStore.reset();
+    ParamStore.setAll();
   });
 
   afterEach(function () {
     ReactDOM.unmountComponentAtNode(document.getElementById('test'));
-    ParamStore.reset();
+    ParamStore.setAll();
   });
 
   it('should listen to the change of url params', function () {

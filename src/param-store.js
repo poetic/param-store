@@ -33,7 +33,7 @@ const ParamStore = {
     }
   },
 
-  reset(params) {
+  setAll(params) {
     const currentParamsWithNull = _.mapValues(this._getParams(), () => null)
     this.set(_.extend(currentParamsWithNull, params))
   },

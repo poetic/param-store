@@ -43,7 +43,7 @@ var ParamStore = {
       history.push(this._getNextLocation(nextParams));
     }
   },
-  reset: function reset(params) {
+  setAll: function setAll(params) {
     var currentParamsWithNull = _lodash2.default.mapValues(this._getParams(), function () {
       return null;
     });

@@ -1,14 +1,13 @@
 import React from 'react'
 import ParamStore from './param-store'
 
-// may be have a state and change this to active or not
 export default class Link extends React.Component {
   render () {
     const {type, params, ...other} = this.props
 
     other.onClick = other.onClick || function (e) {
       e.preventDefault()
-      ParamStore.set(params)
+      ParamStore.setAll(params)
     }
 
     if (type === 'a') {

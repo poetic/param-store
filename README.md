@@ -9,6 +9,7 @@ independent params which can be set and get.
 [![devDependency Status](https://david-dm.org/poetic/param-store/dev-status.svg)](https://david-dm.org/poetic/param-store#info=devDependencies)
 
 ## API
+
 ### ParamStore
 ```
 import ParamStore from 'param-store'

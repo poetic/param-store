@@ -3,8 +3,9 @@
   "description": "param store for react",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
     "test": "echo 'TEST IS NOT SETUP ON CI'",
+    "prepublish": "npm run build",
+    "build": "babel src --out-dir dist",
     "browser": "open http://localhost:8080/ && webpack-dev-server --hot --inline --content-base ./",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

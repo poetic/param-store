@@ -24,8 +24,7 @@
   },
   "homepage": "https://github.com/poetic/param-store",
   "dependencies": {
-    "domurl": "^2.1.0",
-    "history": "^2.1.1"
+    "history": "^3.0.0"
   },
   "peerDependencies": {
     "lodash": "^4.7.0",

@@ -1,8 +1,7 @@
-import { createHistory } from 'history'
-import Url from 'domurl'
+import { createHistory, useQueries } from 'history'
 import _ from 'lodash'
 
-const history = createHistory()
+const history = useQueries(createHistory)()
 
 const ParamStore = {
   previousParams: {},
@@ -56,35 +55,31 @@ const ParamStore = {
   _handlers: [],
 
   _getParams() {
-    const url = new Url()
-    const path = url.path.substr(1)
-    const params = Object.assign({}, {path}, url.query)
-
-    return params
+    const {pathname, query} = history.getCurrentLocation()
+    const path = pathname.substr(1)
+    return Object.assign({path}, query)
   },
 
   _getNextLocation(nextParams) {
-    const url = new Url()
+    const location = history.getCurrentLocation()
+    const query = _.cloneDeep(location.query)
 
     _.each(nextParams, function(value, name) {
-      if (name !== 'path') {
-        url.query[name] = value
+      if (name !== 'path' && !_.isUndefined(value)) {
+        query[name] = _.isNull(value) ? undefined : value
       }
     })
 
     let pathname;
     if (_.isUndefined(nextParams.path)) {
-      pathname = url.path
+      pathname = location.pathname
     } else if (_.isNull(nextParams.path)) {
       pathname = ''
     } else {
       pathname = '/' + nextParams.path
     }
 
-    const queryString = url.query.toString()
-    const search = (queryString ? '?' : '') + queryString
-
-    return {pathname, search}
+    return {pathname, query}
   }
 }
 

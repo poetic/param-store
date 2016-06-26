@@ -1,5 +1,4 @@
 import ParamStore from '../src/index';
-import Url from 'domurl';
 
 describe('ParamStore', function () {
   beforeEach(function () {

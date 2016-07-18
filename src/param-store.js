@@ -95,7 +95,9 @@ history.listen(function() {
       return !_.isEqual(previousParams[paramName], currentParams[paramName])
     })
     // check if the changed ones contains the listened ones
-    const shouldNotify = _.difference(names, changedParams).length < names.length
+    const watchAll = names.length === 0
+    const watchedChanged = _.intersection(names, changedParams).length > 0
+    const shouldNotify = watchAll || watchedChanged
     if (shouldNotify) {
       callback({
         changedParams: _.pick(currentParams, names),

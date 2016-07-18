@@ -58,17 +58,26 @@ describe('ParamStore', function () {
   describe('listen', function () {
     it('should notify handler', (done) => {
       const handler = ParamStore.listen('paramA', function(report) {
-        expect(report.changedParams).to.eql({paramA: 'valueA'});
         ParamStore.unlisten(handler);
+        expect(report.changedParams).to.eql({paramA: 'valueA'});
         done();
       });
       ParamStore.set({paramA: 'valueA'});
     });
 
+    it('should notify handler if user do not specify arguments', (done) => {
+      const handler = ParamStore.listen(function(report) {
+        ParamStore.unlisten(handler);
+        expect(report.changedParams).to.eql({});
+        done();
+      });
+      ParamStore.set({paramA: 'valueA', paramB: 'valueB'});
+    });
+
     it('should notify handler only the change value', (done) => {
       const handler = ParamStore.listen('paramA', function(report) {
-        expect(report.changedParams).to.eql({paramA: 'valueA'});
         ParamStore.unlisten(handler);
+        expect(report.changedParams).to.eql({paramA: 'valueA'});
         done();
       });
       ParamStore.set({paramA: 'valueA', paramB: 'valueB'});
@@ -80,8 +89,8 @@ describe('ParamStore', function () {
       });
       ParamStore.set({paramB: 'valueB'});
       setTimeout(function() {
-        done();
         ParamStore.unlisten(handler);
+        done();
       }, 50);
     });
   });

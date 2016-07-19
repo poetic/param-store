@@ -1,7 +1,10 @@
+import ParamStore from './param-store'
+import actionTypeConstants from './action-type-constants'
+
 export default (store) => {
-  ParamStore.listen((report) => {
+  return ParamStore.listen((report) => {
     store.dispatch({
-      type: 'CHANGE_PARAM_STORE',
+      type: actionTypeConstants.PUSH_PARAM_STORE,
       value: report
     })
   })

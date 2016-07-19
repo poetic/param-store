@@ -1,3 +1,5 @@
 import './param-store'
 import './connect'
 import './Link'
+import './emit-to-redux'
+import './reducer'

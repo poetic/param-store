@@ -1,4 +1,5 @@
 import ParamStore from './param-store'
+import actionTypeConstants from './action-type-constants'
 
 const initialState = {
   currentParams: ParamStore.getAll(),
@@ -7,9 +8,10 @@ const initialState = {
 }
 
 export default (state=initialState, action) => {
-  if (action.type === 'CHANGE_PARAM_STORE') {
-    return action.value
-  } else {
-    return state
+  switch (action.type) {
+    case actionTypeConstants.PUSH_PARAM_STORE:
+      return action.value
+    default:
+      return state
   }
 }

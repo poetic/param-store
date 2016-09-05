@@ -18,7 +18,7 @@ const ParamStore = {
     return _.pick(this._getParams(), names)
   },
 
-  set(params) {
+  set(params, options) {
     const currentParams = this._getParams()
     const nextParams = _.clone(params)
 
@@ -27,14 +27,18 @@ const ParamStore = {
       return _.isEqual(value, currentParams[name])
     })
 
-    if (!paramsIsSame) {
-      history.push(this._getNextLocation(nextParams))
+    if (paramsIsSame) {
+      return;
     }
+
+    const methodName = _.get(options, 'replaceState') ? 'replace' : 'push'
+    const nextLocation = this._getNextLocation(nextParams)
+    history[methodName](nextLocation);
   },
 
-  setAll(params) {
+  setAll(params, options) {
     const currentParamsWithNull = _.mapValues(this._getParams(), () => null)
-    this.set(_.extend(currentParamsWithNull, params))
+    this.set(_.extend(currentParamsWithNull, params), options)
   },
 
   listen() {

@@ -21,10 +21,15 @@ import ParamStore from 'param-store'
 // SETTER
 // `set` MERGE the new params with the previous params in the url
 ParamStore.set({path: 'login'}) // change path
-Paramstore.set({userId: 'f38adfn'}) // change userId
-Paramstore.set({path: 'user', userId: 'f38adfn'}) // change path and userId
+ParamStore.set({userId: 'f38adfn'}) // change userId
+ParamStore.set({path: 'user', userId: 'f38adfn'}) // change path and userId
 // `setAll` RESETS the whole url and ignore the previous url
 Paramstore.setAll({path: 'login'}) // overwrite current params
+// Options:
+// options apply to set and setAll as the second argument
+// replaceState: replace instead of push to history stack
+// e.g.
+ParamStore.set({ path: 'login' }, {replaceState: true})
 
 // GETTER
 ParamStore.get('path') // get 'path' from params
